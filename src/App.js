@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import SearchBar from "./components/SearchBar";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	const handleSubmit = (term) => {
+		console.log("This is the term you are searching for: ", term);
+	};
+
+	return (
+		<div>
+			<SearchBar onSubmit={handleSubmit} />{" "}
+			{/* *CHILD TO PARENT COMMUNICATION*. Here we are passing handleSubmit as a prop to Search Bar component which is going to invoke a call when click happens in SearchBar component (which is a child.)*/}
+			{/* NOTE!!! for custom component we can use any type of prop name we want. But for JSX tags like button there are only specific prop names likes onClick which are called event Handlers */}
+		</div>
+	);
+};
 
 export default App;
