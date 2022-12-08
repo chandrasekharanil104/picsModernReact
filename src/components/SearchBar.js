@@ -1,15 +1,26 @@
-import App from "../App";
+import "./SearchBar.css";
+import { useState } from "react";
 
 const SearchBar = ({ onSubmit }) => {
-	const handleClick = () => {
-		onSubmit("cars");
+	const [term, setTerm] = useState("");
+
+	const handleFormSubmit = (event) => {
+		event.preventDefault();
+
+		onSubmit(term);
+	};
+
+	const handleInputChange = (event) => {
+		setTerm(event.target.value);
 	};
 
 	return (
-		<div>
-			<input />
-			<button onClick={handleClick}>Search</button>{" "}
-			{/* *CHILD TO PARENT COMMUNICATION when the click happens onClick event is going to call handleClick function which inturn calls onSubmit function(which is a prop passed from APP.js) onSubmit then calls handleSubmit and invokes it which is specified in APP.js* */}
+		<div className="search-bar">
+			<form onSubmit={handleFormSubmit}>
+				<label>Enter Search Term: </label>
+				<input value={term} onChange={handleInputChange} />{" "}
+				{/* value prop in input forces the input to always display what was specified in the value and nothing else. */}
+			</form>
 		</div>
 	);
 };
@@ -23,3 +34,5 @@ export default SearchBar;
 
 
 */
+
+/* Any time we wire up an event handler on plain JSX element, the event handler(call back function) receives the event object */
